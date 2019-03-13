@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request, 'wikiapp/index.html')
 
+
 # ADD A WIKI
 def createwiki(request):
     form = postForm(request.POST or None)
@@ -17,9 +18,9 @@ def createwiki(request):
 
     if request.method == "POST" and form.is_valid():
         print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-        PostModel.objects.create(request.POST['title'], request.POST['text'], request.POST['image'],
-                                 request.POST['created'], request.POST['updated'])
-        return render(request, 'wikiapp/createwiki.html')
+        PostModel.objects.create(request.POST['title'], request.POST['text'], request.FILES['image'])
+
+        return redirect('allwiki')
 
     return render(request, 'wikiapp/createwiki.html', context)
 
