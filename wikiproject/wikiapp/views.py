@@ -16,6 +16,7 @@ def createwiki(request):
     }
 
     if request.method == "POST" and form.is_valid():
+        print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
         postModel.objects.create(request.POST['title'], request.POST['text'], request.POST['image'],
                                  request.POST['created'], request.POST['updated'])
         return render(request, 'wikiapp/createwiki')
