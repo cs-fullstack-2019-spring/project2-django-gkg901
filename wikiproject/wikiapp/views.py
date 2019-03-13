@@ -19,7 +19,7 @@ def createwiki(request):
         print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
         postModel.objects.create(request.POST['title'], request.POST['text'], request.POST['image'],
                                  request.POST['created'], request.POST['updated'])
-        return render(request, 'wikiapp/createwiki')
+        return render(request, 'wikiapp/createwiki.html')
 
     return render(request, 'wikiapp/createwiki.html', context)
 
