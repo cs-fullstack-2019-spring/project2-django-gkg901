@@ -1,14 +1,14 @@
 from django import forms
-from .models import relatedModel, postModel
+from .models import RelatedModel, PostModel
 
 
 class relatedForm(forms.ModelForm):
     class Meta:
-        model = relatedModel
+        model = RelatedModel
         exclude = ['created', 'updated', 'post']
 
 
 class postForm(forms.ModelForm):
     class Meta:
-        model = postModel
+        model = PostModel
         exclude = ['created', 'updated', 'userTableForeignKey']

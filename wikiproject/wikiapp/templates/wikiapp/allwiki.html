@@ -8,6 +8,11 @@
 
 <h1>all wikis</h1>
 
+{% for post in allposts %}
+<p>{{post.title}}</p>
+<p>{{post.created}}</p>
+<p>{{post.updated}}</p>
 
+{% endfor %}
 </body>
 </html>

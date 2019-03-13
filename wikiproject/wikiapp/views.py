@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import relatedModel, postModel
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import RelatedModel, PostModel
 from .forms import postForm, relatedForm
 from django.contrib.auth.models import User
 
@@ -17,7 +17,7 @@ def createwiki(request):
 
     if request.method == "POST" and form.is_valid():
         print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-        postModel.objects.create(request.POST['title'], request.POST['text'], request.POST['image'],
+        PostModel.objects.create(request.POST['title'], request.POST['text'], request.POST['image'],
                                  request.POST['created'], request.POST['updated'])
         return render(request, 'wikiapp/createwiki.html')
 
@@ -53,7 +53,8 @@ def deleterelated(request, ID):
 
 
 def allwiki(request):
-    return render(request, 'wikiapp/allwiki.html')
+    allposts = PostModel.objects.all()
+    return render(request, 'wikiapp/allwiki.html', {'allposts': allposts})
 
 
 def newUser(request):
