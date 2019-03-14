@@ -8,5 +8,10 @@
 
 <h1>create related</h1>
 
+
+<form  enctype="multipart/form-data" method = "POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
 </body>
 </html>

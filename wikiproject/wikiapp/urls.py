@@ -1,12 +1,12 @@
 from django.views.static import serve
 
 from . import views
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', views.index, name='index'),
     path('createwiki/', views.createwiki, name='createwiki'),
     path('readwiki/<int:ID>/', views.readwiki, name='readwiki'),
@@ -23,4 +23,5 @@ urlpatterns = [
     path('newUser/', views.newUser, name='newUser'),
     path('userEntries/', views.userEntries, name='userEntries'),
     path('media/<path:path>/', serve, {'document_root': settings.MEDIA_ROOT, }),
+
 ]

@@ -8,10 +8,10 @@
 
 <h1>edit wiki</h1>
 
-<form enctype="multipart/form-data" method = post action="{% url 'allwiki' %}">
+<form enctype="multipart/form-data" method = "POST">
     {% csrf_token %}
     {{form.as_p}}
-    <button>Submit</button>
+    <button type="submit">Save</button>
 </form>
 
 </body>

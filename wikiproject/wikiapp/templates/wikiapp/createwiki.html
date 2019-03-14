@@ -9,7 +9,7 @@
 <h1>create wiki</h1>
 
 
-<form enctype="multipart/form-data" method = "POST">
+<form  enctype="multipart/form-data" method = "POST">
     {% csrf_token %}
     {{form.as_p}}
     <button>Submit</button>

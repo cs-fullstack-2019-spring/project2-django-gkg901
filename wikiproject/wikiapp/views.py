@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import RelatedModel, PostModel
 from .forms import postForm, relatedForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -16,9 +17,13 @@ def createwiki(request):
         "form": form
     }
 
-    if request.method == "POST" and form.is_valid():
+    if form.is_valid():
+        image_info = ''
+        if request.FILES:
+            image_info = request.FILES['image']
+
         print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-        PostModel.objects.create(title=request.POST['title'], text=request.POST['text'], image=request.FILES['image'])
+        PostModel.objects.create(title=request.POST['title'], text=request.POST['text'], image=image_info)
 
         return redirect('allwiki')
 
@@ -36,31 +41,47 @@ def readwiki(request, ID):
 
 def editwiki(request, ID):
     wiki = get_object_or_404(PostModel, pk=ID)
-    print(wiki)
-    print(wiki.text)
-    form = postForm(instance=wiki)
-    print(form)
-    print(ID)
-    if request.POST == "POST" and form.is_valid():
-        form.save()
-
+    # print(wiki)
+    # print(wiki.text)
+    form = postForm(request.POST or None, instance=wiki)
+    # print(form)
+    # print(ID)
+    if form.is_valid():
+        print(wiki)
+        wiki.save()
+        return redirect('allwiki')
 
     return render(request, 'wikiapp/editwiki.html', {'form': form})
 
 
 def deletewiki(request, ID):
     wiki = get_object_or_404(PostModel, pk=ID)
-    form = postForm(instance=wiki)
+    form = postForm(request.POST or None, instance=wiki)
     print(ID)
-    if request.POST == "POST" and form.is_valid():
-        form.delete()
+    if form.is_valid():
+        wiki.delete()
         return redirect('allwiki')
 
     return render(request, 'wikiapp/deletewiki.html')
 
 
 def createrelated(request, postID):
-    return render(request, 'wikiapp/createrelated.html')
+    wiki = get_object_or_404(PostModel, pk=postID)
+    form = relatedForm(request.POST or None)
+    context = {
+        'form': form,
+        'wiki': wiki
+    }
+
+    if form.is_valid():
+        image_info = ''
+        if request.FILES:
+            image_info = request.FILES['image']
+
+        RelatedModel.objects.create(title=request.POST['title'], text=request.POST['text'],
+                                    image=image_info, post=wiki)
+        return redirect('allwiki')
+    return render(request, 'wikiapp/createrelated.html', context)
 
 
 def readrelated(request, ID):
@@ -81,8 +102,12 @@ def allwiki(request):
 
 
 def newUser(request):
+    user = User.objects.create_user(username = request.)
     return render(request, 'wikiapp/newUser.html')
 
 
+@login_required
 def userEntries(request):
-    return render(request, 'wikiapp/userEntries.html')
+    posts = PostModel.Objects.filter(usertableforeignkey=request.user)
+
+    return render(request, 'wikiapp/userEntries.html', {'posts': posts})
