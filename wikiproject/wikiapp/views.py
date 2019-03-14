@@ -18,7 +18,7 @@ def createwiki(request):
 
     if request.method == "POST" and form.is_valid():
         print('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-        PostModel.objects.create(request.POST['title'], request.POST['text'], request.FILES['image'])
+        PostModel.objects.create(title=request.POST['title'], text=request.POST['text'], image=request.FILES['image'])
 
         return redirect('allwiki')
 
@@ -26,14 +26,36 @@ def createwiki(request):
 
 
 def readwiki(request, ID):
-    return render(request, 'wikiapp/readwiki.html')
+    wiki = get_object_or_404(PostModel, pk=ID)
+    print(ID)
+    context = {
+        'wiki': wiki
+    }
+    return render(request, 'wikiapp/readwiki.html', context)
 
 
 def editwiki(request, ID):
-    return render(request, 'wikiapp/editwiki.html')
+    wiki = get_object_or_404(PostModel, pk=ID)
+    print(wiki)
+    print(wiki.text)
+    form = postForm(instance=wiki)
+    print(form)
+    print(ID)
+    if request.POST == "POST" and form.is_valid():
+        form.save()
+
+
+    return render(request, 'wikiapp/editwiki.html', {'form': form})
 
 
 def deletewiki(request, ID):
+    wiki = get_object_or_404(PostModel, pk=ID)
+    form = postForm(instance=wiki)
+    print(ID)
+    if request.POST == "POST" and form.is_valid():
+        form.delete()
+        return redirect('allwiki')
+
     return render(request, 'wikiapp/deletewiki.html')
 
 

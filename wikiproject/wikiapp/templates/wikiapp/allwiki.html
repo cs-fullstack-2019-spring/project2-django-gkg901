@@ -9,9 +9,13 @@
 <h1>all wikis</h1>
 
 {% for post in allposts %}
-<p>{{post.title}}</p>
+<a href="{% url 'readwiki' post.pk  %}"><p>{{post.title}}</p></a>
 <p>{{post.created}}</p>
 <p>{{post.updated}}</p>
+
+
+<a href=' {% url "editwiki" post.pk %}'>Edit</a>
+<a href=' {% url "deletewiki" post.pk %}'>Delete</a>
 
 {% endfor %}
 </body>
