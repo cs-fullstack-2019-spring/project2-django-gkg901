@@ -8,5 +8,17 @@
 
 <h1>user Entries</h1>
 
+
+{% for post in posts %}
+<a href="{% url 'readwiki' post.pk  %}"><p>{{post.title}}</p></a>
+<p>{{post.created}}</p>
+<p>{{post.updated}}</p>
+
+
+<a href=' {% url "editwiki" post.pk %}'>Edit</a>
+<a href=' {% url "deletewiki" post.pk %}'>Delete</a>
+
+{% endfor %}
+
 </body>
 </html>

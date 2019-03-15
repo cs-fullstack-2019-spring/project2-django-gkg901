@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'wikiapp/base.html' %}
 
+
+{% block content %}
 <h1>index</h1>
 
 {% if user.is_authenticated %}
@@ -14,9 +10,8 @@ Hi {{ user.username }}!
 {% else %}
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">login</a>
+<a href="{% url 'newUser' %}">Create Account</a>
 {% endif %}
 <hr/>
 
-
-</body>
-</html>
+{% endblock content %}

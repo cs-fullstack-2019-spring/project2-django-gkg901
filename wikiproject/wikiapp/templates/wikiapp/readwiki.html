@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
+{% extends 'wikiapp/base.html' %}
+{% block content %}
 <h1>read wiki</h1>
 
 {% if wiki %}
@@ -13,7 +7,9 @@
 <p>{{wiki.title}}</p>
 <p>{{wiki.text}}</p>
 {% endif %}
+{% for item in item %}
+<a href="{% url 'readrelated' item.pk %}"><p>{{item.title}}</p></a>
+<p>{{item.text}}</p>
+{% endfor %}
 
-
-</body>
-</html>
+{% endblock content %}

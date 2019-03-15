@@ -8,5 +8,11 @@
 
 <h1>read related</h1>
 
+{% if item %}
+{{item.title}}
+{{item.text}}
+<a href="{% url 'editrelated' item.pk %}">Edit</a>
+<a href="{% url 'deleterelated' item.pk %}">Delete</a>
+{% endif %}
 </body>
 </html>

@@ -6,5 +6,20 @@
 </head>
 <body>
 
+<nav>
+    {% if user.is_authenticated %}
+    <a href="{% url 'index' %}">Home</a>
+    <a href="{% url 'createwiki' %}">Add A New Wiki</a>
+    <a href="{% url 'userEntries' %}">Your Entries</a>
+    {% else %}
+    <a href="{% url 'index' %}">Home</a>
+    {% endif %}
+
+</nav>
+
+
+{% block content %}
+{% endblock content %}
+
 </body>
 </html>

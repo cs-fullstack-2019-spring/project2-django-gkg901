@@ -8,5 +8,11 @@
 
 <h1>edit related</h1>
 
+<form enctype="multipart/form-data" method = "POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Save</button>
+</form>
+
 </body>
 </html>
