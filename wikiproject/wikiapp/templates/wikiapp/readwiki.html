@@ -10,6 +10,11 @@
 {% for item in item %}
 <a href="{% url 'readrelated' item.pk %}"><p>{{item.title}}</p></a>
 <p>{{item.text}}</p>
+
 {% endfor %}
+
+{% if user.is_authenticated %}
+<a href="{% url 'createrelated' wiki.pk%}">Add Related Item</a>
+{% endif %}
 
 {% endblock content %}

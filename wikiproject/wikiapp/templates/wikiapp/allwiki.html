@@ -8,10 +8,11 @@
 <p>{{post.created}}</p>
 <p>{{post.updated}}</p>
 
-
+{% if user.is_authenticated %}
 <a href=' {% url "editwiki" post.pk %}'>Edit</a>
 <a href=' {% url "deletewiki" post.pk %}'>Delete</a>
 
+{% endif %}
 {% endfor %}
 
 

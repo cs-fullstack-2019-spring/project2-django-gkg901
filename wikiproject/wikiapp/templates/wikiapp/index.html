@@ -14,4 +14,13 @@ Hi {{ user.username }}!
 {% endif %}
 <hr/>
 
+
+{% for posts in allposts %}
+<a href="{% url 'readwiki' post.pk  %}"><p>{{post.title}}</p></a>
+<p>{{post.created}}</p>
+<p>{{post.updated}}</p>
+{% endfor %}
+
+
+
 {% endblock content %}

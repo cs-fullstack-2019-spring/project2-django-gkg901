@@ -28,7 +28,7 @@ def createwiki(request):
         PostModel.objects.create(title=request.POST['title'], text=request.POST['text'], image=image_info,
                                  userTableForeignKey=user)
 
-        return redirect('allwiki')
+        return redirect('userEntries')
 
     return render(request, 'wikiapp/createwiki.html', context)
 
@@ -58,7 +58,7 @@ def editwiki(request, ID):
     if form.is_valid():
         print(wiki)
         wiki.save()
-        return redirect('allwiki')
+        return redirect('userEntries')
 
     return render(request, 'wikiapp/editwiki.html', {'form': form})
 
@@ -93,7 +93,7 @@ def createrelated(request, postID):
 
         RelatedModel.objects.create(title=request.POST['title'], text=request.POST['text'],
                                     image=image_info, post=wiki)
-        return redirect('allwiki')
+        return redirect('userEntries')
     return render(request, 'wikiapp/createrelated.html', context)
 
 

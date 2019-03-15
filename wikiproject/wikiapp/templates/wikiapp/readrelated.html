@@ -11,8 +11,12 @@
 {% if item %}
 {{item.title}}
 {{item.text}}
+
+{% if user.is_authenticated %}
 <a href="{% url 'editrelated' item.pk %}">Edit</a>
 <a href="{% url 'deleterelated' item.pk %}">Delete</a>
+
+{% endif %}
 {% endif %}
 </body>
 </html>
