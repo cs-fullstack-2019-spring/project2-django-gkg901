@@ -1,20 +1,40 @@
 {% extends 'wikiapp/base.html' %}
 {% block content %}
-<h1>read wiki</h1>
+
+
+<h1>{{wiki.title}}</h1>
 
 {% if wiki %}
 
-<p>{{wiki.title}}</p>
-<p>{{wiki.text}}</p>
+<div class="container">
+<p class="title"></p>
+<p class="text">{{wiki.text}}</p>
 {% endif %}
+
 {% for item in item %}
-<a href="{% url 'readrelated' item.pk %}"><p>{{item.title}}</p></a>
-<p>{{item.text}}</p>
+
+    <div class="card" style="width: 15rem;">
+        {% if item.image %}
+        <img src="{{item.image.url|default_if_none:'#'}}" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+            <p class="card-text"><a href="{% url 'readrelated' item.pk %}">{{item.title}}</p></a>
+            <p>{{item.text}}</p>
+        </div>
+    </div>
+{% endfor %}
+
+
+{% for item in item %}
+<a  href=><p class="sidecontent"></p></a>
+<p class="sidecontent"></p>
 
 {% endfor %}
 
 {% if user.is_authenticated %}
 <a href="{% url 'createrelated' wiki.pk%}">Add Related Item</a>
 {% endif %}
+</div>
+
 
 {% endblock content %}

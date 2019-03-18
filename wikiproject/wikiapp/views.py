@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import RelatedModel, PostModel
 from .forms import postForm, relatedForm, userForm
@@ -7,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
-    return render(request, 'wikiapp/index.html')
+    allposts = PostModel.objects.all()
+
+    return render(request, 'wikiapp/index.html', {'allposts': allposts})
 
 
 # ADD A WIKI
@@ -154,3 +157,15 @@ def userEntries(request):
     posts = PostModel.objects.filter(userTableForeignKey=request.user)
 
     return render(request, 'wikiapp/userEntries.html', {'posts': posts})
+
+
+# search bar
+def search(request):
+    results = PostModel.objects.filter(Q(title__contains=request.POST['searchBar']) | Q(text__contains=request.POST['searchBar']))
+    items = RelatedModel.objects.all()
+
+    context = {
+        'allposts': results,
+        'items': items
+    }
+    return render(request, 'wikiapp/search.html', context)

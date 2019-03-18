@@ -6,6 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('search/', views.search, name='search'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', views.index, name='index'),
     path('createwiki/', views.createwiki, name='createwiki'),

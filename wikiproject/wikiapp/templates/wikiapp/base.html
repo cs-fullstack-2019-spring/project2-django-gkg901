@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wikiapp/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'wikiapp/css/base.css' %}">
+    <script src="{% static 'wikiapp/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'wikiapp/js/bootstrap.js' %}"></script>
 </head>
 <body>
 
@@ -11,9 +16,19 @@
     <a href="{% url 'index' %}">Home</a>
     <a href="{% url 'createwiki' %}">Add A New Wiki</a>
     <a href="{% url 'userEntries' %}">Your Entries</a>
+    <form class="searchBar" action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="searchBar" placeholder="search all entries...">
+        <button type="submit" class="btn btn-light btn-sm">Search</button>
+    </form>
     {% else %}
     <a href="{% url 'index' %}">Home</a>
     <a href="{% url 'allwiki' %}">All Wikis</a>
+    <form class="searchBar" action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="searchBar" placeholder="search all entries...">
+        <button type="submit" class="btn btn-light btn-sm">Search</button>
+    </form>
     {% endif %}
 
 </nav>
@@ -21,6 +36,18 @@
 
 {% block content %}
 {% endblock content %}
+
+<div class="container">
+{% block post %}
+{% endblock post %}
+</div>
+
+{% block side %}
+{% endblock side %}
+
+{% block footer %}
+{% endblock footer %}
+
 
 </body>
 </html>

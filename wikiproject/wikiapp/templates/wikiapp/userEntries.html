@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'wikiapp/base.html' %}
 
-<h1>user Entries</h1>
+{% block content %}
+<h1>Your Wikis</h1>
+{% endblock content %}
 
 
+{% block post %}
 {% for post in posts %}
-<a href="{% url 'readwiki' post.pk  %}"><p>{{post.title}}</p></a>
+<a class="title" href="{% url 'readwiki' post.pk  %}"><p>{{post.title}}</p></a>
 <p>{{post.created}}</p>
 <p>{{post.updated}}</p>
 
 
-<a href=' {% url "editwiki" post.pk %}'>Edit</a>
-<a href=' {% url "deletewiki" post.pk %}'>Delete</a>
+<a class="option" href=' {% url "editwiki" post.pk %}'>Edit</a>
+<a class="option" href=' {% url "deletewiki" post.pk %}'>Delete</a>
+
 
 {% endfor %}
-
-</body>
-</html>
+{% endblock post %}

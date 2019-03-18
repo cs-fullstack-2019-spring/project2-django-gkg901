@@ -1,22 +1,15 @@
 {% extends 'wikiapp/base.html' %}
 
 
-
 {% block content %}
-<h1>Welcome to the Django Wiki</h1>
-
-{% if user.is_authenticated %}
-Hi {{ user.username }}!
-<p><a href="{% url 'logout' %}">logout</a></p>
-{% else %}
-<p>You are not logged in</p>
-<a href="{% url 'login' %}">login</a>
-<a href="{% url 'newUser' %}">Create Account</a>
-{% endif %}
-<hr/>
+<h1>Results</h1>
 
 
 {% endblock content %}
+
+
+
+
 
 
 {% block post %}
