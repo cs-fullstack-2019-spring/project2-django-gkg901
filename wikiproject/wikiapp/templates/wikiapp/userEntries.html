@@ -7,6 +7,7 @@
 
 {% block post %}
 {% for post in posts %}
+
 <a class="title" href="{% url 'readwiki' post.pk  %}"><p>{{post.title}}</p></a>
 <p>{{post.created}}</p>
 <p>{{post.updated}}</p>

@@ -1,4 +1,5 @@
 body{
+    background-color: rgba(168, 219, 175, 0.4);
     margin: 6% 10%;
     font: .9em/1.2 Arial, Helvetica, sans-serif;
 }
@@ -15,6 +16,7 @@ body{
 }
 
 .text{
+    background-color: rgba(168,219,175,0.15);
     padding: 3%;
     border: 1px solid grey;
     grid-column: 1/4;
@@ -36,5 +38,5 @@ body{
 }
 
 .option{
-    grid-row: 2;
+    grid-row: auto;
 }

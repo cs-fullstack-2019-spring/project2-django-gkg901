@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'wikiapp/base.html' %}
 
-<h1>create related</h1>
+{% block content %}
+
+<h1>Create Related Item</h1>
 
 
 <form  enctype="multipart/form-data" method = "POST">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">Submit</button>
-</body>
-</html>
+</form>
+ {% endblock %}

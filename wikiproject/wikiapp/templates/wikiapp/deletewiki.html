@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'wikiapp/base.html' %}
 
-<h1>delete wiki</h1>
+{% block content %}
+
+
+<h1>Delete Wiki</h1>
 
 <form  method = post>
     {% csrf_token %}
@@ -14,6 +11,4 @@
     <button>Delete</button>
 </form>
 
-
-</body>
-</html>
+{% endblock content %}

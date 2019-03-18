@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'wikiapp/base.html' %}
 
-<h1>delete related</h1>
+
+
+{% block content %}
+
+
+
+<h1>Delete Related Item</h1>
 <form  method = post>
     {% csrf_token %}
     {{form.as_p}}
     <button>Submit</button>
 </form>
 
-</body>
-</html>
+{% endblock content %}

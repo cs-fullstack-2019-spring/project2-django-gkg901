@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+
+
+# INDEX
 def index(request):
     allposts = PostModel.objects.all()
 
@@ -122,7 +125,8 @@ def editrelated(request, ID):
 
     return render(request, 'wikiapp/editrelated.html', {'form': form})
 
-
+# DELETE A RELATED ITEM
+@login_required
 def deleterelated(request, ID):
     item = get_object_or_404(RelatedModel, pk=ID)
     form = postForm(request.POST or None, instance=item)
@@ -159,7 +163,7 @@ def userEntries(request):
     return render(request, 'wikiapp/userEntries.html', {'posts': posts})
 
 
-# search bar
+# SEARCH BAR
 def search(request):
     results = PostModel.objects.filter(Q(title__contains=request.POST['searchBar']) | Q(text__contains=request.POST['searchBar']))
     items = RelatedModel.objects.all()
