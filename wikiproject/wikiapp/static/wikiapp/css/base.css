@@ -16,7 +16,7 @@ body{
 }
 
 .text{
-    background-color: rgba(168,219,175,0.15);
+    background-color: rgba(67, 89, 67, 0.26);
     padding: 3%;
     border: 1px solid grey;
     grid-column: 1/4;
@@ -39,4 +39,14 @@ body{
 
 .option{
     grid-row: auto;
+}
+
+
+.footer{
+    background-color: rgba(67, 89, 67, 0.26);
+    border: 1px solid grey;
+    grid-column: 1/5;
+    grid-row: auto;
+    text-align: left;
+    padding: 3%;
 }
